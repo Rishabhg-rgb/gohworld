@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container lg:grid grid-cols-12 gap-6 items-start pb-16 pt-4 lg:px-[10rem]">
+    <!-- checkout form -->
+    <div class="lg:col-span-8 border border-gray-200 px-4 py-4 rounded">
+        <form action="/placeorder/" method="POST">{% csrf_token %}
+            <h3 class="text-lg font-medium capitalize mb-4">
+                Payment Method
+            </h3>
+
+            <div class="space-y-4">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Online Method
+                        </label>
+                        <input required type="radio" name="paymentmethod"  id="onlinemethod">
+                    </div>                    
+                </div>
+                <div>
+                    <label class="text-gray-600 mb-2 block">
+                        Cash On delivery
+                    </label>
+                    <input required type="radio" name="paymentmethod"  id="COD">
+                </div>
+            </div>
+            </form>
+    </div>
+
+    <div class="lg:col-span-4 border border-gray-200 px-4 py-4 rounded mt-6 lg:mt-0">
+        <h4 class="text-gray-800 text-lg mb-4 font-medium uppercase">ORDER SUMMARY</h4>
+        <div class="space-y-2">
+            <div class="flex justify-between" v-for="n in 3" :key="n">
+                <div>
+                    <h5 class="text-gray-800 text-xl">{{Product.Title}}</h5>
+                </div>
+                <!-- <p class="text-gray-600">x3</p> -->
+                <p class="text-gray-800 font-medium">&#8377;{{Product.Price}}</p>
+            </div>
+        </div>
+        <div class="flex justify-between border-b border-gray-200 mt-1">
+            <h4 class="text-gray-800 font-medium my-3 uppercase">Subtotal</h4>
+            <h4 class="text-gray-800 font-medium my-3 uppercase">&#8377;{{Product.Price}}</h4>
+        </div>
+        <div class="flex justify-between">
+            <h4 class="text-gray-800 font-semibold my-3 uppercase">Total</h4>
+            <h4 class="text-gray-800 font-semibold my-3 uppercase">&#8377;{{Product.Price}}</h4>
+        </div>
+
+        <!-- agreeement  -->
+        <div class="flex items-center mb-4 mt-2">
+            <input required type="checkbox" id="agreement"
+                class="text-primary focus:ring-0 rounded-sm cursor-pointer w-3 h-3">
+            <label for="agreement" class="text-gray-600 ml-3 cursor-pointer text-sm">
+                Agree to our
+                <a href="#" class="text-primary">terms & conditions</a>
+            </label>
+        </div>
+
+        <!-- checkout -->
+        <button type="submit" class="bg-yellow-800 border border-yellow-900 text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
+     hover:text-yellow-800 transition text-sm w-full block text-center">
+            Place order
+        </button>
+        <input type="hidden" name="items" value="{{Product.Title}}--{{Product.type}}--{{Product.id}}">
+        <input type="hidden" name="amount" value="{{Product.Price}}">
+    </form>
+{% endblock %}

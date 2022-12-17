@@ -1,0 +1,131 @@
+{% extends 'Base.html' %}
+{% block body %}
+
+{% for Product in product %}
+<!-- breadcrum -->
+<div class="py-4 container flex gap-3 items-center">
+    <a href="/" class="text-primary text-base">
+        <i class="fas fa-home"></i>
+    </a>
+    <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
+    <a href="/shop" class="text-primary text-base font-medium uppercase">
+        Shop
+    </a>
+    <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
+    <p class="text-gray-600 font-medium uppercase">{{Product.desc}}</p>
+</div>
+<!-- breadcrum end -->
+
+<!-- product view -->
+<div class="container pt-4 pb-28 px-14 grid lg:grid-cols-2 gap-6">
+    <!-- product image -->
+    <div>
+        <div>
+            <img id="main-img" src="/media/{{Product.Image_main}}" class="w-full h-96 lg:h-[50rem]">
+        </div>
+        {% if Product.Image_1 and Product.Image_2 and Product.Image_3  %}
+        <div class="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-4 mt-4 h-fit">
+
+            <div>
+                <img src="/media/{{Product.Image_1}}" class="single-img w-full h-20 cursor-pointer border lg:h-32 secondary-img" >
+            </div>
+            <div>
+                <img src="/media/{{Product.Image_2}}" class="single-img w-full h-20 cursor-pointer border lg:h-32 secondary-img" >
+            </div>
+            <div>
+                <img src="/media/{{Product.Image_3}}" class="single-img w-full h-20 cursor-pointer border lg:h-32 secondary-img" >
+            </div>
+            <div>
+                <img src="/media/{{Product.Image_4}}" class="single-img w-full h-20 cursor-pointer border lg:h-32 secondary-img" >
+            </div>
+            <div>
+                <img src="/media/{{Product.Image_5}}" class="single-img w-full h-20 cursor-pointer border lg:h-32 secondary-img">
+            </div>
+            <div>
+                <img src="/media/{{Product.Image_6}}" class="single-img w-full h-20 cursor-pointer border lg:h-32 secondary-img">
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    <!-- product image end -->
+    <!-- product content -->
+    <div>
+        <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2">{{Product.Title}}</h2>
+        <div class="flex items-center mb-4">
+            <div class="flex gap-1 text-sm text-yellow-400">
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+            </div>
+        </div>
+        <div class="space-y-2">
+            <p class="text-gray-800 font-semibold space-x-2">
+                <span>Availability: </span>
+                <span class="text-green-600">In Stock</span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-bold">Category: </span>
+                {% if Product.Metal %}
+                <span class="text-gray-600">{{Product.type}} ({{Product.Metal}})</span>
+                {% else %}
+                <span class="text-gray-600">{{Product.type}}</span>
+                {% endif %}
+            </p>
+            <p class="space-x-2">
+                <span class="text-green-600 font-bold">Coupons For You:  </span>
+                <span class="text-gray-600">Purchase Now And Get A Surprise Discount </span>
+            </p>
+        </div>
+        <div class="mt-4 flex items-baseline gap-3">
+            <span class="text-primary font-semibold text-xl"> &#8377; {{Product.Price}}.00 /-</span>
+        </div>
+        <p class="mt-4 text-gray-600 font-bold">
+            {{Product.desc}}
+        </p>
+
+        <!-- quantity -->
+        <!-- <div class="mt-4">
+                <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
+                <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
+                    <div class="h-10 w-5 text-xl flex items-center justify-center cursor-pointer select-none" id="minus" onclick=" document.querySelector('.quantity').innerHTML= parseInt(document.querySelector('#quantity').value)-1; document.querySelector('#quantity').value=String(parseInt(document.querySelector('#quantity').value)-1);"><button id="disablity">-</button></div>
+                    <div class="h-10 w-10 flex items-center justify-center quantity">1</div><input type="hidden" name="quantity" value="1" id="quantity">
+                    <div class="h-10 w-5 text-xl flex items-center justify-center cursor-pointer select-none" id="plus" onclick=" document.querySelector('.quantity').innerHTML= parseInt(document.querySelector('#quantity').value)+1; document.querySelector('#quantity').value=String(parseInt(document.querySelector('#quantity').value)+1);"><button>+</button></div>
+                </div>
+            </div> -->
+        <!-- color end -->
+        <!-- add to cart button -->
+        <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
+            <a href="/checkout/{{Product.type}}/{{Product.id}}/"
+                class="bg-yellow-800 border text-white px-8 py-2 font-medium rounded uppercase 
+                    hover:bg-transparent hover:text-yellow-800 bg:border-yellow-800 transition text-sm flex items-center">
+                <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Buy Now
+            </a>
+        </div>
+        <!-- add to cart button end -->
+    </div>
+    <!-- product content end -->
+</div>
+<!-- product view end -->
+<script>
+    // if (document.querySelector('#quantity').value == "1") {
+    //     document.querySelector('#disablity').disabled = true
+    // }
+    let secondaryimg = document.querySelectorAll('.secondary-img')
+    let mainimg = document.querySelector('#main-img')
+    secondaryimg.forEach(element => {
+        element.addEventListener('click',()=>{
+            secondaryimg.forEach(element => {
+                element.classList.remove('border','border-yellow-800')
+            });
+            element.classList.add('border','border-yellow-800')
+            mainimg.src = element.src
+        })
+    });
+
+
+</script>
+{% endfor %}
+{% endblock %}

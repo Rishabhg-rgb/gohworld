@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!-- payment complete wrapper -->
+<div class="max-w-3xl mx-auto px-4 pt-16 pb-24 text-center">
+
+    {% if response.RESPCODE == '01' %}
+    <img src="https://w7.pngwing.com/pngs/270/706/png-transparent-check-mark-computer-icons-green-tick-mark-angle-text-logo.png"
+        alt="" class="h-24 m-auto">
+    <h2 class="text-gray-800 font-medium text-3xl mb-3">
+        PAYMENT Successfull
+    </h2>
+    <p class="text-gray-600 ">
+        Thank you for your order! Your order is being processed . You will
+        receive an email confirmation.
+    </p>
+    <div class="mt-10">
+        <a href="/" class="bg-yellow-800 text-white border border-yellow-800 px-6 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-yellow-800 
+         hover:text-primary transition text-center">Continue shopping</a>
+    </div>
+    {% else %}
+    <img src="https://www.citypng.com/public/uploads/preview/free-round-vector-red-x-cross-mark-sign-icon-png-11641213216il2i1l2yqt.png"
+        alt="" class="h-24 m-auto">
+    <h2 class="text-gray-800 font-medium text-3xl mb-3">
+        PAYMENT UNSUCCESSFULL
+    </h2>
+    <div class="mt-10">
+        <a href="/" class="bg-yellow-800 text-white border border-yellow-800 px-6 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-yellow-800 
+         hover:text-primary transition text-center">Continue shopping</a>
+    </div>
+
+    {% endif %}
+</div>
+
+    <!-- order complete wrapper end -->
+
+
+    {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'Base.html' %}
+
+{% block body %}
+
+
+
+    <!-- form wrapper -->
+    <div class="container py-16">
+        <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden border border-gray-300">
+            <h2 class="text-2xl uppercase font-medium mb-1">
+                Contact Us
+            </h2>
+            <form action="/contact/" method="POST">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Full Name <span class="text-red-300">*</span>
+                        </label>
+                        <input required type="text" class="input-box w-full py-2 border border-gray-300" name="name" placeholder="joe kerry">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Email Address <span class="text-red-300">*</span>
+                        </label>
+                        <input required type="email" class="input-box w-full py-2 border border-gray-300" name="email" placeholder="example@mail.com">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Query <span class="text-red-300">*</span>
+                        </label>
+                        <Textarea required rows="10" cols="60" class="input-box w-full border border-gray-300" name="query"></Textarea>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit"
+                        class="block w-full py-2 text-center text-white bg-yellow-700 border border-yellow-800 rounded hover:bg-transparent hover:text-yellow-900 transition uppercase font-roboto font-medium">
+                        Send Query
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- form wrapper end -->
+
+<script>
+
+</script>
+
+{% endblock %}

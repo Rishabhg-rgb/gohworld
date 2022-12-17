@@ -1,0 +1,82 @@
+{% extends 'Base.html' %}
+
+{% block body %}
+
+
+
+    <!-- form wrapper -->
+    <div class="container py-16">
+        <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden border border-gray-300">
+            <h2 class="text-2xl uppercase font-medium mb-1">
+                create an acocunt
+            </h2>
+            <p class="text-gray-600 mb-6 text-sm">
+                Register here if you don't have account
+            </p>
+            <form action="/signup/" method="POST"> {% csrf_token %}
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Full Name <span class="text-red-300">*</span>
+                        </label>
+                        <input type="text" class="input-box w-full py-2 border border-gray-300" name="name" placeholder="joe kerry">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Username<span class="text-red-300">*</span>
+                        </label>
+                        <input type="text" class="input-box w-full py-2 border border-gray-300" name="username" placeholder="name@123">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Email Address <span class="text-red-300">*</span>
+                        </label>
+                        <input type="email" class="input-box w-full py-2 border border-gray-300" name="email" placeholder="example@mail.com">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Phone Number <span class="text-red-300">*</span>
+                        </label>
+                        <input type="tel" class="input-box w-full py-2 border border-gray-300" name="phonenumber" placeholder="Enter phone Number">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">Password <span class="text-red-300">*</span></label>
+                        <input type="password" class="input-box w-full py-2 border border-gray-300" placeholder="type password" name="password1" id="pass1">
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">Confirm Password 
+                            <span class="text-red-300">*</span>
+                        </label>
+                        <input type="password" class="input-box w-full py-2 border border-gray-300" placeholder="confirm your password" name="password2" id="pass2">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="button" onclick="passwordmatch()"
+                        class="block w-full py-2 text-center text-white bg-yellow-700 border border-yellow-800 rounded hover:bg-transparent hover:text-yellow-900 transition uppercase font-roboto font-medium">
+                        create account
+                    </button>
+                    <input type="submit" hidden id="submitbtn">
+                </div>
+            </form>
+            <p class="mt-4 text-gray-600 text-center">
+                Already have an account? <a href="/login" class="text-yellow-400">Login Now</a>
+            </p>
+        </div>
+    </div>
+    <!-- form wrapper end -->
+
+<script>
+    let pass1  = document.querySelector('#pass1')
+    let pass2 =document.querySelector('#pass2')
+    let submitbtn = document.querySelector('#submitbtn')
+    function passwordmatch(){
+        if (pass1.value==pass2.value){
+            submitbtn.click()
+        }
+        else{
+
+        }
+    }
+</script>
+
+{% endblock %}

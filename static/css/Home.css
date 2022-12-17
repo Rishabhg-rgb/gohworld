@@ -1,0 +1,58 @@
+.automatic-sliding {
+    
+    width: 95vmin;
+    position: absolute;
+    transform: translate(-40%, -40%);
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    border: 10px solid #ffffff;
+    border-radius: 8px;
+    box-shadow: 10px 25px 30px rgba(0, 0, 0, 0.3);
+}
+
+div#slide {
+    overflow: hidden;
+}
+
+div#slide figure img {
+    width: 20%;
+    float: left;
+}
+
+div#slide figure {
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+    text-align: left;
+    font-size: 0;
+    animation: 7s sliding ease infinite;
+}
+
+@keyframes sliding {
+    0% {
+        left: 0%;
+    }
+
+    20% {
+        left: -100%;
+    }
+
+    40% {
+        left: -200%;
+    }
+
+    60% {
+        left: -300%;
+    }
+
+    80% {
+        left: -400%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+

@@ -1,0 +1,224 @@
+{% extends 'Base.html' %}
+{% block body %}
+
+<!-- shop wrapper -->
+<div class="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
+    <!-- sidebar -->
+    <div
+        class="col-span-1 bg-white px-4 pt-4 pb-6 shadow rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block categoryblock z-0">
+        <div class="divide-gray-200 divide-y space-y-5 relative">
+            <!-- category filter -->
+            <div class="relative">
+                <div class="lg:hidden text-gray-400 hover:text-primary text-lg absolute right-0 top-0 cursor-pointer">
+                    <i class="fas fa-times"></i>
+                </div>
+                <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
+                <div class="space-y-2">
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="anklet"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck" value="anklet">
+                        <label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer">Anklet</label>
+                    </div>
+                    <!-- single category end -->
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="mangalsutra"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck">
+                        <label for="Sofa" class="text-gray-600 ml-3 cursor-pointer">mangalsutra</label>
+                    </div>
+                    <!-- single category end -->
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="pendant"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck">
+                        <label for="Office" class="text-gray-600 ml-3 cursor-pointer">Pendant</label>
+                    </div>
+                    <!-- single category end -->
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="earring"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck">
+                        <label for="Outdoor" class="text-gray-600 ml-3 cursor-pointer">Earring</label>
+                    </div>
+                    <!-- single category end -->
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="rakhi"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck">
+                        <label for="Outdoor" class="text-gray-600 ml-3 cursor-pointer">Rakhi</label>
+                    </div>
+                    <!-- single category end -->
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="necklace"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck">
+                        <label for="Outdoor" class="text-gray-600 ml-3 cursor-pointer">Necklace</label>
+                    </div>
+                    <!-- single category end -->
+                    <!-- single category -->
+                    <div class="flex items-center">
+                        <input type="checkbox" id="chain"
+                            class="text-primary focus:ring-0 rounded-sm cursor-pointer categorycheck">
+                        <label for="Outdoor" class="text-gray-600 ml-3 cursor-pointer">Chain</label>
+                    </div>
+                    <!-- single category end -->
+
+
+
+                </div>
+            </div>
+            <!-- category filter end -->
+            <!-- type filter -->
+            <!-- <div class="pt-4">
+                    <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Type</h3>
+                    <div class="space-y-2"> -->
+            <!-- single type name -->
+            <!-- <div class="flex items-center">
+                            <input type="checkbox" id="precious"
+                                class="text-primary focus:ring-0 rounded-sm cursor-pointer typecheck">
+                            <label for="Dominik" class="text-gray-600 ml-3 cursor-pointer">Precious</label>
+                        </div> -->
+            <!-- single type name end -->
+            <!-- single type name -->
+            <!-- <div class="flex items-center">
+                            <input type="checkbox" id="fashion"
+                                class="text-primary focus:ring-0 rounded-sm cursor-pointer typecheck">
+                            <label for="Karl" class="text-gray-600 ml-3 cursor-pointer">Fashionable</label>
+                        </div> -->
+            <!-- single type name end -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- brand filter end -->
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- products -->
+    <div class="col-span-3 mx-1">
+        <!-- product wrapper -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  sm:grid-cols-2 gap-6">
+            <!-- single product -->
+            {% for Product in fashionProductList %}
+            <div class="group rounded bg-white shadow overflow-hidden">
+                <!-- product image -->
+                <div class="relative">
+                    <img src="/media/{{Product.Image_main}}" class="w-full h-80">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        <a href="/view/{{Product.type}}/{{Product.id}}/"
+                            class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                            <i class="fas fa-search"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <!-- product image end -->
+                <!-- product content -->
+                <div class="pt-4 pb-3 px-4 h-36">
+                    <a href="/view/{{Product.type}}/{{Product.id}}/">
+                        <h4 class="uppercase font-light text-xl mb-2 text-gray-800 hover:text-primary transition">
+                            {{Product.desc}}
+                        </h4>
+                    </a>
+                    <div class="flex items-baseline mb-1 space-x-2">
+                        <p class="text-xl text-primary font-roboto font-semibold">&#8377; {{Product.Price}}.00</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex gap-1 text-sm text-yellow-400">
+                            <span:key="n"><i class="fas fa-star"></i></span>
+                                <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                        <span:key="n"><i class="fas fa-star"></i></span>
+                                            <span:key="n"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- product content end -->
+                <!-- product button -->
+                <div class="productbuttons flex">
+                    <a href="/view/{{Product.type}}/{{Product.id}}"
+                        class="block w-full py-1 text-center text-white bg-yellow-800 border rounded-b hover:bg-transparent hover:text-yellow-800 hover:border-yellow-800 transition">
+                        View
+                    </a>
+                </div>
+                <!-- product button end -->
+            </div>
+            {% endfor %}
+
+            <!-- single product -->
+            {% for Product in preciousProductList %}
+            <div class="group rounded bg-white shadow overflow-hidden">
+                <!-- product image -->
+                <div class="relative">
+                    <img src="/media/{{Product.Image}}" class="w-full h-80">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                        <a href="/view/{{Product.type}}/{{Product.id}}/"
+                            class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+                <!-- product image end -->
+                <!-- product content -->
+                <div class="pt-4 pb-3 px-4 h-36">
+                    <a href="/view/{{Product.type}}/{{Product.id}}/">
+                        <h4 class="uppercase font-light text-xl mb-2 text-gray-800 hover:text-primary transition">
+                            {{Product.desc}}
+                        </h4>
+                    </a>
+                    <div class="flex items-baseline mb-1 space-x-2">
+                        <p class="text-xl text-primary font-roboto font-semibold">&#8377; {{Product.Price}}.00</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex gap-1 text-sm text-yellow-400">
+                            <span:key="n"><i class="fas fa-star"></i></span>
+                                <span:key="n"><i class="fas fa-star"></i></span>
+                                    <span:key="n"><i class="fas fa-star"></i></span>
+                                        <span:key="n"><i class="fas fa-star"></i></span>
+                                            <span:key="n"><i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- product content end -->
+                <!-- product button -->
+
+                <div class="productbuttons flex">
+                    <a href="/view/{{Product.type}}/{{Product.id}}"
+                        class="block w-full py-1 text-center text-white bg-yellow-800 border rounded-b hover:bg-transparent hover:text-yellow-800 hover:border-yellow-800 transition">
+                        View
+                    </a>
+                </div>
+                <!-- product button end -->
+            </div>
+            {% endfor %}
+            <!-- single product end -->
+            <!-- single product -->
+
+            <!-- single product end -->
+        </div>
+        <!-- product wrapper end -->
+    </div>
+    <!-- products end -->
+</div>
+<!-- shop wrapper end -->
+
+
+<script>
+    let categorycheck = document.querySelectorAll('.categorycheck')
+    let typecheck = document.querySelectorAll('.typecheck')
+
+    categorycheck.forEach(element => {
+        element.addEventListener('click', () => {
+            window.location.replace(`http://localhost:8000/shop/${element.id}`)
+
+        })
+
+    });
+
+</script>
+
+
+{% endblock %}
